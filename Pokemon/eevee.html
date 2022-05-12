@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            float:left;
+            height: 300px;
+        }
+        p{
+            padding-top: 100px;
+            font-size: 50px;
+        }
+        #tipo{
+            height: 30px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script> 
+        function a() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    CrearSelect(xhttp.responseXML);
+                }
+            }
+            xhttp.open("GET", "Evoluciones.xml");
+            xhttp.send();
+        }
+        function CrearSelect(xml){
+            let piedra=xml.getElementsByTagName("piedra");
+            let select=document.createElement("select");
+            for (let i = 0; i < piedra.length; i++) {
+                let opcion=document.createElement("option"); 
+                opcion.innerHTML = piedra[i].childNodes[0].nodeValue;
+                opcion.id = piedra[i].childNodes[0].nodeValue;
+                select.appendChild(opcion);
+            }
+            select.addEventListener("change",ba);
+            document.getElementById("a").appendChild(select);
+            
+        }
+        function ba(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    CrearImg(xhttp.responseXML);
+                    ca();
+                }
+            }
+            xhttp.open("GET", "Evoluciones.xml");
+            xhttp.send();
+            
+        }
+        function CrearImg(xml){
+            let ruta_img=xml.getElementsByTagName("img");
+            let poke=xml.getElementsByTagName("nombre");
+            let valor=document.getElementsByTagName("select")[0].value;
+            let img=document.getElementsByTagName("img")[0];
+            let p=document.getElementsByTagName("p")[0];
+            if (img == null){
+                img=document.createElement("img");
+                p=document.createElement("p");
+                if(valor=="Ninguna"){
+                    img.src=ruta_img[0].childNodes[0].nodeValue;
+                    p.innerHTML=poke[0].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'Cornsilk';
+                }
+                if(valor=="Piedra_Fuego"){
+                    img.src=ruta_img[1].childNodes[0].nodeValue;
+                    p.innerHTML=poke[1].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'Coral';
+                }
+                if(valor=="Piedra_Trueno"){
+                    img.src=ruta_img[2].childNodes[0].nodeValue;
+                    p.innerHTML=poke[2].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'Gold';
+                }
+                if(valor=="Piedra_Agua"){
+                    img.src=ruta_img[3].childNodes[0].nodeValue;
+                    p.innerHTML=poke[3].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'LightSkyBlue';
+                }
+                if(valor=="Normal(Dia)"){
+                    img.src=ruta_img[4].childNodes[0].nodeValue;
+                    p.innerHTML=poke[4].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'MediumPurple';
+                }
+                if(valor=="Normal(Noche)"){
+                    img.src=ruta_img[5].childNodes[0].nodeValue;
+                    p.innerHTML=poke[5].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'MidnightBlue';
+                }
+                if(valor=="Roca_Hielo"){
+                    img.src=ruta_img[6].childNodes[0].nodeValue;
+                    p.innerHTML=poke[6].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'DarkCyan';
+                }
+                if(valor=="Piedra_Hoja"){
+                    img.src=ruta_img[7].childNodes[0].nodeValue;
+                    p.innerHTML=poke[7].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'YellowGreen';
+                }
+                if(valor=="Amistad"){
+                    img.src=ruta_img[8].childNodes[0].nodeValue;
+                    p.innerHTML=poke[8].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'MediumOrchid';
+                }
+                if(valor=="Roca?"){
+                    img.src=ruta_img[9].childNodes[0].nodeValue;
+                    p.innerHTML=poke[9].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'FireBrick';
+                }
+                document.getElementById("b").appendChild(img);
+                document.getElementById("b").appendChild(p);
+            }
+            else{
+                if(valor=="Ninguna"){
+                    img.src=ruta_img[0].childNodes[0].nodeValue;
+                    p.innerHTML=poke[0].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'Cornsilk';
+                }
+                if(valor=="Piedra_Fuego"){
+                    img.src=ruta_img[1].childNodes[0].nodeValue;
+                    p.innerHTML=poke[1].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'Coral';
+                }
+                if(valor=="Piedra_Trueno"){
+                    img.src=ruta_img[2].childNodes[0].nodeValue;
+                    p.innerHTML=poke[2].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'Gold';
+                }
+                if(valor=="Piedra_Agua"){
+                    img.src=ruta_img[3].childNodes[0].nodeValue;
+                    p.innerHTML=poke[3].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'LightSkyBlue';
+                }
+                if(valor=="Normal(Dia)"){
+                    img.src=ruta_img[4].childNodes[0].nodeValue;
+                    p.innerHTML=poke[4].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'MediumPurple';
+                }
+                if(valor=="Normal(Noche)"){
+                    img.src=ruta_img[5].childNodes[0].nodeValue;
+                    p.innerHTML=poke[5].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'darkslategrey';
+                }
+                if(valor=="Roca_Hielo"){
+                    img.src=ruta_img[6].childNodes[0].nodeValue;
+                    p.innerHTML=poke[6].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'DarkCyan';
+                }
+                if(valor=="Piedra_Hoja"){
+                    img.src=ruta_img[7].childNodes[0].nodeValue;
+                    p.innerHTML=poke[7].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'YellowGreen';
+                }
+                if(valor=="Amistad"){
+                    img.src=ruta_img[8].childNodes[0].nodeValue;
+                    p.innerHTML=poke[8].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'MediumOrchid';
+                }
+                if(valor=="Roca?"){
+                    img.src=ruta_img[9].childNodes[0].nodeValue;
+                    p.innerHTML=poke[9].childNodes[0].nodeValue;
+                    document.body.style.backgroundColor = 'darkgoldenrod';
+                }
+            }  
+        }
+        function ca(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    CrearTipo(xhttp.responseXML);
+                }
+            }
+            xhttp.open("GET", "Tipos.xml");
+            xhttp.send();
+        }
+        function CrearTipo(xml){
+            let evolucion=xml.getElementsByTagName("evolucion");
+            let i;
+            let valor=document.getElementsByTagName("select")[0].value;
+            let p=document.createElement("p");
+                if(valor=="Ninguna"){
+                    i=0;
+                }
+                if(valor=="Piedra_Fuego"){
+                    i=1;
+                }
+                if(valor=="Piedra_Trueno"){
+                    i=2;
+                }
+                if(valor=="Piedra_Agua"){
+                    i=3;
+                }
+                if(valor=="Normal(Dia)"){
+                    i=4;
+                }
+                if(valor=="Normal(Noche)"){
+                    i=5;
+                }
+                if(valor=="Roca_Hielo"){
+                    i=6;
+                }
+                if(valor=="Piedra_Hoja"){
+                    i=7;
+                }
+                if(valor=="Amistad"){
+                    i=8;
+                }
+                if(valor=="Roca?"){
+                    i=9;
+                }
+            let hay_tabla=document.getElementsByTagName("table")[0];
+            if(hay_tabla==null){
+
+            let tabla=document.createElement("table");
+            let txtTipo=evolucion[i].getElementsByTagName("tipo");
+            for (let j = 0; j < txtTipo.length; j++) {
+                let td=document.createElement("td");
+                let Tipo=document.createElement("tr");
+                let Fototabla=document.createElement("tr");
+                let Foto=document.createElement("img");
+                Tipo.innerHTML="Tipo "+(j+1)+":";
+                Foto.src=txtTipo[j].childNodes[0].nodeValue;
+                Foto.id="tipo";
+                Fototabla.appendChild(Foto);
+                td.appendChild(Tipo);
+                td.appendChild(Fototabla);
+                tabla.appendChild(td);
+            }
+            document.getElementById("b").appendChild(tabla);
+        }
+        else{
+            hay_tabla.remove();
+            let tabla=document.createElement("table");
+            let txtTipo=evolucion[i].getElementsByTagName("tipo");
+            for (let j = 0; j < txtTipo.length; j++) {
+                let td=document.createElement("td");
+                let Tipo=document.createElement("tr");
+                let Fototabla=document.createElement("tr");
+                let Foto=document.createElement("img");
+                Tipo.innerHTML="Tipo "+(j+1)+":";
+                Foto.src=txtTipo[j].childNodes[0].nodeValue;
+                Foto.id="tipo";
+                Fototabla.appendChild(Foto);
+                td.appendChild(Tipo);
+                td.appendChild(Fototabla);
+                tabla.appendChild(td);
+            }
+            document.getElementById("b").appendChild(tabla);
+        }
+        }
+    </script>
+    
+</head>
+<body onload="a()">
+    <div id="a"></div>
+    <div id="b"></div>
+</body>
+</html>
